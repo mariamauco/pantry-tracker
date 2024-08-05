@@ -95,8 +95,6 @@ export default function Home() {
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
 
-  console.log(inventory)
-
   useEffect(() => {
     if(searchQuery){
       const filtered = inventory.filter(item => item.name.toLowerCase().includes(searchQuery.toLowerCase()));
@@ -104,7 +102,7 @@ export default function Home() {
     } else{
       setFilteredItems(inventory);
     }
-  },[searchQuery])
+  },[searchQuery, inventory])
 
 
   // Component logic here
@@ -202,6 +200,7 @@ export default function Home() {
         <Stack>
           {filteredItems.map(({name, quantity}) => (
             <Container
+            key={name}
             sx={{
               display:'flex',
               flexDirection: 'row',
